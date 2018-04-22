@@ -8,6 +8,12 @@ endif
 
 let colors_colors = "cmptrclr"
 
+hi method                       guifg=#0087bd   guibg=NONE      cterm=none
+hi dot                          guifg=#8040e0 guibg=NONE  cterm=bold
+hi function                     guifg=#006a40 guibg=NONE  cterm=none
+hi class                        guifg=#efcc00 guibg=NONE    cterm=none
+hi operator                     guifg=#8040e0 guibg=NONE  cterm=none
+
 hi cursorLine                 guifg=NONE    guibg=#151515 cterm=none
 hi cursorColumn               guifg=NONE    guibg=#151515 cterm=none
 hi normal                     guifg=#eeeeee guibg=#000000 cterm=none
@@ -62,8 +68,9 @@ hi cStructure                 guifg=#ff8000 guibg=NONE  cterm=none
 hi cTagsDefinedName           guifg=#c400c4 guibg=NONE  cterm=none
 hi cTagsEnumerationValue      guifg=#800040 guibg=NONE  cterm=none
 hi cTagsEnumeratorName        guifg=#408000 guibg=NONE  cterm=none
-hi cTagsFunction              guifg=#006a40 guibg=NONE  cterm=none
-hi cTagsGlobalVariable        guifg=#ffff00 guibg=NONE  cterm=underline
+hi link cTagsFunction               function
+"hi cTagsFunction              guifg=#006a40 guibg=NONE  cterm=none
+hi cTagsGlobalVariable        guifg=#ffff00 guibg=NONE  cterm=none
 hi cTagsMember                guifg=#ffb000 guibg=NONE  cterm=none
 
 hi link cComment            comment
@@ -309,7 +316,7 @@ hi shQuote                      guifg=#ff0000   guibg=NONE  cterm=none
 hi link shDoubleQuote               cString
 
 hi link shSpecial                   cSpecial
-hi link shDerefSimple               cPreCondit
+hi link shDerefSimple               identifier
 hi link shConditional               cConditional
 
 " I have no idea what this is,but the trans is shIf
@@ -321,13 +328,12 @@ hi link shTestPattern               cFormat
 hi link shTestOpr                   cOperator
 hi link shNumber                    cNumber
 hi link shOperator                  cOperator
-hi link shOption                    cPreProc
+hi link shOption                    vimHighlight
 
-" Originally identifier
 hi link shFunction                    cTagsFunction
 
-" Orignally identifier
 hi link shVariable                    cTagsGlobalVariable
+hi link shDerefVar                      identifier
 hi shCommandSub                 guifg=#0000aa guibg=NONE    cterm=none
 
 " Orignally shVarAssign
@@ -460,6 +466,10 @@ hi link objcType            cType
 hi objcHiddenArgument       guifg=#0000aa   guibg=NONE  cterm=none
 hi objcMethodCall              guifg=#00406a guibg=NONE  cterm=none
 
+
+hi link pythonDot           dot
+hi link pythonExtraOperator operator
+hi link pythonExceptions    type
 hi link pythonInclude       cPreProc
 hi link pythonComment       cComment
 hi link pythonnStatement    cStatement
@@ -474,6 +484,7 @@ hi link pythonTODO          todo
 hi link pythonQuotes        cSpecial
 hi link pythonRawString     cFormat
 hi link pythonEscape        cSpecial
+hi link pythonBuiltin       identifier
 
 
 hi link cMakeStatement      cStatement
@@ -487,10 +498,8 @@ hi link cMakeEscaped         cSpecial
 hi link cMakeRegistry       cFormat
 
 " I'm pfobalby oging to want to change this to its own darkish orangis color
-hi link pythonExceptions    type
 
 " May use statement
-hi link pythonBuiltin       identifier
 
 hi cTagsClass               guifg=#00ff00   guibg=NONE  cterm=none
 
