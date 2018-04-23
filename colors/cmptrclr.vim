@@ -11,8 +11,10 @@ let colors_colors = "cmptrclr"
 hi method                       guifg=#0087bd   guibg=NONE      cterm=none
 hi dot                          guifg=#8040e0 guibg=NONE  cterm=bold
 hi function                     guifg=#006a40 guibg=NONE  cterm=none
-hi class                        guifg=#efcc00 guibg=NONE    cterm=none
+"hi class                        guifg=#efcc00 guibg=NONE    cterm=none
+hi class                        guifg=#00ff00   guibg=NONE      cterm=none
 hi operator                     guifg=#8040e0 guibg=NONE  cterm=none
+hi constant                   guifg=#ffd000 guibg=NONE    cterm=none
 
 hi cursorLine                 guifg=NONE    guibg=#151515 cterm=none
 hi cursorColumn               guifg=NONE    guibg=#151515 cterm=none
@@ -42,7 +44,6 @@ hi spellBad                   guifg=#ff0000 guibg=NONE    cterm=underline,bold
 hi specialKey                 guifg=#ff6400 guibg=NONE    cterm=none
 
 hi comment                    guifg=#505050 guibg=NONE    cterm=none
-hi constant                   guifg=#ffd000 guibg=NONE    cterm=none
 hi error                      guifg=#800000 guibg=#ff0000 cterm=none
 hi identifier                 guifg=#408000 guibg=NONE    cterm=none
 hi preProc                    guifg=#ff00ff guibg=NONE    cterm=none
