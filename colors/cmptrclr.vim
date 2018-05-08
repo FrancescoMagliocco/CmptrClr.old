@@ -149,3 +149,4 @@ hi! link vimUserFunc    vimFunc
 hi! link vimVar         variable
 hi  conceal             guifg=#1f1f1f   guibg=NONE      cterm=none
 hi  vimFuncVar          guifg=#00eb76   guibg=NONE      cterm=none
+hi  lineNr              guifg=#ff0000   guibg=#1e1e1e   cterm=none
