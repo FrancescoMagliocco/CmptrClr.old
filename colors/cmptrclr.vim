@@ -31,6 +31,11 @@ hi  define              guifg=#8000ff   guibg=NONE      cterm=none
 hi  method              guifg=#0080ff   guibg=NONE      cterm=none
 hi  attribute           guifg=#0073e6   guibg=NONE      cterm=none
 hi  functionName        guifg=#006734   guibg=NONE      cterm=none
+hi  title               guifg=#00ff00   guibg=NONE      cterm=underline
+
+" NOTE: May change the fg here.
+hi  todo                guifg=#ff4500   guibg=NONE      cterm=underline
+hi! link note           title
 
 " vim buffers
 hi  cursorLine          guifg=NONE      guibg=#151515   cterm=none
@@ -79,7 +84,10 @@ fu! SetColor(group, ...)
         if type(l:ai) == v:t_list
             let l:anlen = len(l:ai)
             if l:anlen
+                " TODO: Find a different approach.  I don't like all these
+                "   neseted statements.
                 if l:anlen >= 2
+                    " TODO: Espeically this...
                     if l:anlen > 2
                         echom 'More than 2 arguments were provided for '
                                     \ . l:grplst[i]
@@ -95,6 +103,10 @@ fu! SetColor(group, ...)
                         l:allgrps[i][1] = 'gui'
                     en
 
+                    " NOTE: When 'i' == 2, we are now working with the
+                    "   attributes (guiterm, cterm) section of the group.
+                    " TODO: Need to implemented a check for 'bold', 'italic',
+                    "   'etc..
                     l:allgrps[i][0] = IsColor(l:an[0])
                                 \ ? l:an[0]
                                 \ : GetColor(
@@ -178,14 +190,16 @@ endf
 
 "cal SetColor('lineNr', 'number', 1, 0, 0, 'gui')
 " vim
-hi! link vimCommand     command
-hi! link vimFBVar       vimVar
-hi! link vimFunc        functionName
-hi! link vimFuncName    vimFunc
-hi! link vimFunction    vimFunc
-hi! link vimHighlight   vimCommand
-hi! link vimLineComment comment
-hi! link vimNumber      number
+hi! link vimCommand         command
+hi! link vimCommentTitle    title
+hi! link vimFBVar           vimVar
+hi! link vimFunc            functionName
+hi! link vimFuncName        vimFunc
+hi! link vimFunction        vimFunc
+hi! link vimHighlight       vimCommand
+hi! link vimLineComment     comment
+hi! link vimNumber          number
+hi! link vimNote            note
 
 " I linked 'vimNotFunc' to 'conditional' because when I first discovered
 " 'vimNotFunc', it was on an 'if'.
@@ -193,6 +207,7 @@ hi! link vimNotFunc     conditional
 hi! link vimOper        operator
 hi! link vimOperParen   parameter
 hi! link vimSynType     type
+hi! link vimTodo        todo
 hi! link vimUserFunc    vimFunc
 hi! link vimVar         variable
 hi  conceal             guifg=#1f1f1f   guibg=NONE      cterm=none
