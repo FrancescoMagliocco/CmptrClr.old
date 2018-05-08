@@ -20,12 +20,14 @@ fu! GetColor(group, term, fgbg)
     en
 endf
 
+" FIXME: Wont match #[0-9A-f]{6} but will everything else.
 fu! IsColor(color)
-    retu a:color =~ '^(#[0-9A-f]{6}|\d{1,3}|Black|White|NONE|((Dark|Light)?(Blue|Green|Cyan|Red|Magenta|Yellow|Gray|Grey)))$'
+    let l:b = a:color =~ '^\(#\[0-9A-f\]\{6\}\|\d\{1,3\}\|Black\|White\|NONE\|\(\(Dark\|Light\)\?\(Blue\|Green\|Cyan\|Red\|Magenta\|Yellow\|Gray\|Grey\)\)\)$'
+    retu l:b
 endf
 
 fu! IsIface(iface)
-    retu a:iface =~ '/^(gui|cterm)$/i'
+    retu a:iface =~ '^\(gui\|cterm\)$' 
 endf
 
 ""
@@ -40,15 +42,12 @@ endf
 " @default attrHiGroup=none
 " @default termStyle=gui
 fu! SetColor(group, ...)
-    let l:fg = [2]
-    let l:bg = [2]
-    let l:attr = [2]
-    let l:allgrps = [l:fg, l:bg, l:attr]
+    let l:allgrps = []
     let l:grplst = ["'{fgHiGroup}'", "'{bgHiGroup}'", "'{attrHiGroup}'"]
     let l:ntogrp = ['fg', 'bg', '']
-   
-    for i in range(0, len(l:allgrps) - 1)
-        let l:ai = get(a:, i + 1, (i < 2 ? 'NONE' : 'none'))
+
+    for l:i in range(0, 2)
+        let l:ai = get(a:, l:i + 1, (l:i < 2 ? 'NONE' : 'none'))
         if type(l:ai) == v:t_list
             let l:anlen = len(l:ai)
             if l:anlen
@@ -58,29 +57,29 @@ fu! SetColor(group, ...)
                     " TODO: Espeically this...
                     if l:anlen > 2
                         echom 'More than 2 arguments were provided for '
-                                    \ . l:grplst[i]
+                                    \ . l:grplst[l:i]
                                     \ . '.  Ignoring the rest...'
                     en
 
                     if IsIface(l:ai[1])
-                        let l:allgrps[i][1] = tolower(l:ai[1])
+                        cal add(l:allgrps, [tolower(l:ai[1])])
                     el
                         echom "Expected 'gui' or 'cterm'... Got '"
                                     \ . l:ai[1] . "'."
                         echom "Using 'gui' by default"
-                        let l:allgrps[i][1] = 'gui'
+                        cal add(l:allgrps, ['gui'])
                     en
 
                     " NOTE: When 'i' == 2, we are now working with the
                     "   attributes (guiterm, cterm) section of the group.
                     " TODO: Need to implemented a check for 'bold', 'italic',
                     "   'etc..
-                    let l:allgrps[i][0] = IsColor(l:ai[0])
+                    cal add(l:allgrps[l:i], IsColor(l:ai[0])
                                 \ ? l:ai[0]
                                 \ : GetColor(
                                         \ l:ai[0],
-                                        \ l:allgrps[i][1],
-                                        \ l:ntogrp[i])
+                                        \ l:allgrps[l:i][0],
+                                        \ l:ntogrp[l:i]))
                 en
             el
                 echom 'A list was provided, but it was empty...'
