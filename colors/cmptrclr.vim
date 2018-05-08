@@ -30,6 +30,14 @@ fu! IsIface(iface)
     retu a:iface =~ '^\(gui\|cterm\)$' 
 endf
 
+" TODO: For the attributes, you're able to use multiple ones at once, for
+"   example: 'cterm=bold,underline' this won't match if more than one attribute
+"   is given.  Need to eventually implement support in for multiple attributes
+"   at once.
+fu! IsAttr(attr)
+    retu a:attr =~ '^\(bold\|underline\|undercurl\|strikethrough\|reverse\|inverse\|italic\|standout\|nocomine\|none\)$'
+endf
+
 ""
 " TODO: Rewrite the usage because this is way out of context now..
 " @usage {} [] [] [] []
@@ -70,16 +78,17 @@ fu! SetColor(group, ...)
                         cal add(l:allgrps, ['gui'])
                     en
 
-                    " NOTE: When 'i' == 2, we are now working with the
-                    "   attributes (guiterm, cterm) section of the group.
-                    " TODO: Need to implemented a check for 'bold', 'italic',
-                    "   'etc..
-                    cal add(l:allgrps[l:i], IsColor(l:ai[0])
-                                \ ? l:ai[0]
-                                \ : GetColor(
-                                        \ l:ai[0],
-                                        \ l:allgrps[l:i][0],
-                                        \ l:ntogrp[l:i]))
+                    " FIXME: The way this is formatted is driving my OCD
+                    "   fucking nuts...
+                    cal add(l:allgrps[l:i], (
+                                \ (l:i < 2
+                                \       ? IsColor(l:ai[0])
+                                \       : IsAttr(l:ai[0]))
+                                \   ? l:ai[0]
+                                \   : GetColor(
+                                \       l:ai[0],
+                                \       l:allgrps[l:i][0],
+                                \       l:ntogrp[l:i])))
                 en
             el
                 echom 'A list was provided, but it was empty...'
