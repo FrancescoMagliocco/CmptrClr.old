@@ -115,9 +115,9 @@ hi  special             guifg=#cc0000   guibg=NONE      cterm=none
 hi  statement           guifg=#0000e6   guibg=NONE      cterm=none
 
 " NOTE: May change the fg here.
-hi  todo                guifg=#ff4500   guibg=NONE      cterm=underline
+hi  todo                guifg=#ff4500   guibg=NONE      cterm=none
 
-hi  title               guifg=#00ff00   guibg=NONE      cterm=underline
+hi  title               guifg=#00ff00   guibg=NONE      cterm=none
 hi  type                guifg=#ff8000   guibg=NONE      cterm=none
 hi  variable            guifg=#00ebeb   guibg=NONE      cterm=none
 
