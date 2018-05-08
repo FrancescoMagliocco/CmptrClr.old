@@ -87,6 +87,7 @@ fu! SetColor(group, ...)
         en
     endfo
 endf
+
 cal SetColor('test', ['normal', 'gui'], ['attribute', 'gui'], ['todo', 'gui'])
 hi  normal              guifg=#ffffff   guibg=#000000   cterm=none
 
