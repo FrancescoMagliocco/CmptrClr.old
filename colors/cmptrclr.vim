@@ -40,15 +40,14 @@ endf
 " @default attrHiGroup=none
 " @default termStyle=gui
 fu! SetColor(group, ...)
-    let l:iface
     let l:fg = [2]
     let l:bg = [2]
-    let l:tStyle = [2]
+    let l:attr = [2]
     let l:allgrps = [l:fg, l:bg, l:attr]
     let l:grplst = ["'{fgHiGroup}'", "'{bgHiGroup}'", "'{attrHiGroup}'"]
     let l:ntogrp = ['fg', 'bg', '']
    
-    for i in range(0, len(l:alvars) - 1)
+    for i in range(0, len(l:allgrps) - 1)
         let l:ai = get(a:, i + 1, (i < 2 ? 'NONE' : 'none'))
         if type(l:ai) == v:t_list
             let l:anlen = len(l:ai)
@@ -64,22 +63,22 @@ fu! SetColor(group, ...)
                     en
 
                     if IsIface(l:ai[1])
-                        l:allgrps[i][1] = tolower(l:ai[1])
+                        let l:allgrps[i][1] = tolower(l:ai[1])
                     el
                         echom "Expected 'gui' or 'cterm'... Got '"
                                     \ . l:ai[1] . "'."
                         echom "Using 'gui' by default"
-                        l:allgrps[i][1] = 'gui'
+                        let l:allgrps[i][1] = 'gui'
                     en
 
                     " NOTE: When 'i' == 2, we are now working with the
                     "   attributes (guiterm, cterm) section of the group.
                     " TODO: Need to implemented a check for 'bold', 'italic',
                     "   'etc..
-                    l:allgrps[i][0] = IsColor(l:an[0])
-                                \ ? l:an[0]
+                    let l:allgrps[i][0] = IsColor(l:ai[0])
+                                \ ? l:ai[0]
                                 \ : GetColor(
-                                        \ l:an[0],
+                                        \ l:ai[0],
                                         \ l:allgrps[i][1],
                                         \ l:ntogrp[i])
                 en
@@ -87,12 +86,9 @@ fu! SetColor(group, ...)
                 echom 'A list was provided, but it was empty...'
             en
         en
-        if type(get(a:, i + 1, (i < 2 ? 'NONE' : 'none'))) == v:t_list
-            let l:anlen = len(a:(i + 1))
-        en
     endfo
 endf
-
+cal SetColor('test', ['normal', 'gui'], ['attribute', 'gui'], ['todo', 'gui'])
 hi  normal              guifg=#ffffff   guibg=#000000   cterm=none
 
 hi  attribute           guifg=#0073e6   guibg=NONE      cterm=none
