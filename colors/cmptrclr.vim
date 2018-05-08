@@ -8,42 +8,11 @@ endif
 
 let colors_colors = "cmptrclr"
 
-hi  normal              guifg=#ffffff   guibg=#000000   cterm=none
-
-hi  comment             guifg=#505050   guibg=NONE      cterm=none
-hi  commentStart        guifg=#404040   guibg=NONE      cterm=none
-hi  command             guifg=#005ab3   guibg=NONE      cterm=none
-
-hi  statement           guifg=#0000e6   guibg=NONE      cterm=none
-hi  type                guifg=#ff8000   guibg=NONE      cterm=none
-hi  identifier          guifg=#00e600   guibg=NONE      cterm=none
-hi  conditional         guifg=#7600eb   guibg=NONE      cterm=none
-hi  constant            guifg=#e6e600   guibg=NONE      cterm=none
-hi  preProc             guifg=#e600e6   guibg=NONE      cterm=none
-hi  special             guifg=#cc0000   guibg=NONE      cterm=none
-hi  format              guifg=#b30000   guibg=NONE      cterm=none
-hi  variable            guifg=#00ebeb   guibg=NONE      cterm=none
-hi  parameter           guifg=#b300b3   guibg=NONE      cterm=none
-hi  operator            guifg=#7300e6   guibg=NONE      cterm=none
-hi  number              guifg=#ff0000   guibg=NONE      cterm=none
-hi  character           guifg=#e60000   guibg=NONE      cterm=none
-hi  define              guifg=#8000ff   guibg=NONE      cterm=none
-hi  method              guifg=#0080ff   guibg=NONE      cterm=none
-hi  attribute           guifg=#0073e6   guibg=NONE      cterm=none
-hi  functionName        guifg=#006734   guibg=NONE      cterm=none
-hi  title               guifg=#00ff00   guibg=NONE      cterm=underline
-
-" NOTE: May change the fg here.
-hi  todo                guifg=#ff4500   guibg=NONE      cterm=underline
-hi! link note           title
-
-" vim buffers
-hi  cursorLine          guifg=NONE      guibg=#151515   cterm=none
-hi! link cursorColumn   cursorLine
-hi  colorColumn         guifg=NONE      guibg=#1e1e1e   cterm=none
-
 " Based off of:
 " https://github.com/dylnmc/lyne-vim/blob/master/plugin/lyne.vim#L19
+" NOTE: Possibly improve the checks here.
+" TODO: Refactor function name, because 'GetColor' does not only get the color
+"   of the given hilightGroup.  It get's the attributes.
 fu! GetColor(group, term, fgbg)
     if (index(['cterm', 'gui'], a:term) >= 0
                 \ && index(['fg', 'bg', ''], a:fgbg) >= 0)
@@ -124,6 +93,69 @@ fu! SetColor(group, ...)
     endfo
 endf
 
+hi  normal              guifg=#ffffff   guibg=#000000   cterm=none
+
+hi  attribute           guifg=#0073e6   guibg=NONE      cterm=none
+hi  character           guifg=#e60000   guibg=NONE      cterm=none
+hi  comment             guifg=#505050   guibg=NONE      cterm=none
+hi  commentStart        guifg=#404040   guibg=NONE      cterm=none
+hi  command             guifg=#005ab3   guibg=NONE      cterm=none
+hi  conditional         guifg=#7600eb   guibg=NONE      cterm=none
+hi  constant            guifg=#e6e600   guibg=NONE      cterm=none
+hi  define              guifg=#8000ff   guibg=NONE      cterm=none
+hi  format              guifg=#b30000   guibg=NONE      cterm=none
+hi  functionName        guifg=#006734   guibg=NONE      cterm=none
+hi  identifier          guifg=#00e600   guibg=NONE      cterm=none
+hi  method              guifg=#0080ff   guibg=NONE      cterm=none
+hi  number              guifg=#ff0000   guibg=NONE      cterm=none
+hi  operator            guifg=#7300e6   guibg=NONE      cterm=none
+hi  parameter           guifg=#b300b3   guibg=NONE      cterm=none
+hi  preProc             guifg=#e600e6   guibg=NONE      cterm=none
+hi  special             guifg=#cc0000   guibg=NONE      cterm=none
+hi  statement           guifg=#0000e6   guibg=NONE      cterm=none
+
+" NOTE: May change the fg here.
+hi  todo                guifg=#ff4500   guibg=NONE      cterm=underline
+
+hi  title               guifg=#00ff00   guibg=NONE      cterm=underline
+hi  type                guifg=#ff8000   guibg=NONE      cterm=none
+hi  variable            guifg=#00ebeb   guibg=NONE      cterm=none
+
+hi! link note           title
+
+" vim buffers
+hi  conceal             guifg=#1f1f1f   guibg=NONE      cterm=none
+hi  cursorLine          guifg=NONE      guibg=#151515   cterm=none
+hi  colorColumn         guifg=NONE      guibg=#1e1e1e   cterm=none
+hi  lineNr              guifg=#ff0000   guibg=#1e1e1e   cterm=none
+
+hi! link cursorColumn   cursorLine
+
+" vim
+hi! link vimCommand         command
+hi! link vimCommentTitle    title
+hi! link vimFBVar           vimVar
+hi! link vimFunc            functionName
+hi! link vimFuncName        vimFunc
+hi! link vimFunction        vimFunc
+hi! link vimHighlight       vimCommand
+hi! link vimLineComment     comment
+hi! link vimNumber          number
+hi! link vimNote            note
+
+" I linked 'vimNotFunc' to 'conditional' because when I first discovered
+" 'vimNotFunc', it was on an 'if'.
+hi! link vimNotFunc     conditional
+hi! link vimOper        operator
+hi! link vimOperParen   parameter
+hi! link vimSynType     type
+hi! link vimTodo        todo
+hi! link vimUserFunc    vimFunc
+hi! link vimVar         variable
+hi  vimFuncVar          guifg=#00eb76   guibg=NONE      cterm=none
+
+finish
+
 ""    if type(get(a:, 1, 'NONE') == v:t_list)
 "        let l:a1len = len(a:1)
 "        if l:a1len
@@ -189,27 +221,4 @@ endf
 "endf
 
 "cal SetColor('lineNr', 'number', 1, 0, 0, 'gui')
-" vim
-hi! link vimCommand         command
-hi! link vimCommentTitle    title
-hi! link vimFBVar           vimVar
-hi! link vimFunc            functionName
-hi! link vimFuncName        vimFunc
-hi! link vimFunction        vimFunc
-hi! link vimHighlight       vimCommand
-hi! link vimLineComment     comment
-hi! link vimNumber          number
-hi! link vimNote            note
 
-" I linked 'vimNotFunc' to 'conditional' because when I first discovered
-" 'vimNotFunc', it was on an 'if'.
-hi! link vimNotFunc     conditional
-hi! link vimOper        operator
-hi! link vimOperParen   parameter
-hi! link vimSynType     type
-hi! link vimTodo        todo
-hi! link vimUserFunc    vimFunc
-hi! link vimVar         variable
-hi  conceal             guifg=#1f1f1f   guibg=NONE      cterm=none
-hi  vimFuncVar          guifg=#00eb76   guibg=NONE      cterm=none
-hi  lineNr              guifg=#ff0000   guibg=#1e1e1e   cterm=none
