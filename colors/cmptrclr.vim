@@ -158,7 +158,7 @@ hi! link vimTodo        todo
 hi! link vimUserFunc    vimFunc
 hi! link vimVar         variable
 hi  vimFuncVar          guifg=#00eb76   guibg=NONE      cterm=none
-
+" TODO: Color 'vimStringComment
 finish
 
 ""    if type(get(a:, 1, 'NONE') == v:t_list)
