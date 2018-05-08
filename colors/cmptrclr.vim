@@ -52,6 +52,7 @@ endf
 
 fu! IsIface(iface)
     retu a:iface =~ '/^(gui|cterm)$/i'
+endf
 
 ""
 " @usage {} [] [] [] []
