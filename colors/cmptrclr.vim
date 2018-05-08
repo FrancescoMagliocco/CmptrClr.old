@@ -55,6 +55,7 @@ fu! IsIface(iface)
 endf
 
 ""
+" TODO: Rewrite the usage because this is way out of context now..
 " @usage {} [] [] [] []
 " {hiGroup} will have its forground color set to [fgHiGroup], its background
 " background color set to [bgHiGroup] and its attribute set [attrHiGroup].
@@ -65,69 +66,115 @@ endf
 " @default attrHiGroup=none
 " @default termStyle=gui
 fu! SetColor(group, ...)
-    if type(get(a:, 1, 'NONE') == v:t_list)
-        let l:a1len = len(a:1)
-        if l:a1len
-           if l:alen >= 2
-               if l:alen > 2
-                   echom 'You provided more than 2 arguemnts for parameter '
-                               \ . "'{fgHiGroup}'.  Ignoring the rest"
-               en
-               
-               if IsIface(a:1[1])
-                   let l:iface = tolower(a:1[1])
-               el
-                   echom "Expected 'gui' or 'cterm'..  Got '" . a:1[1] . "'..."
-                   echom "Using 'gui' as default!"
-                   let l:iface = 'gui'
-               en
+    let l:iface
+    let l:fg = [2]
+    let l:bg = [2]
+    let l:tStyle = [2]
+    let l:allgrps = [l:fg, l:bg, l:attr]
+    let l:grplst = ["'{fgHiGroup}'", "'{bgHiGroup}'", "'{attrHiGroup}'"]
+    let l:ntogrp = ['fg', 'bg', '']
+   
+    for i in range(0, len(l:alvars) - 1)
+        let l:ai = get(a:, i + 1, (i < 2 ? 'NONE' : 'none'))
+        if type(l:ai) == v:t_list
+            let l:anlen = len(l:ai)
+            if l:anlen
+                if l:anlen >= 2
+                    if l:anlen > 2
+                        echom 'More than 2 arguments were provided for '
+                                    \ . l:grplst[i]
+                                    \ . '.  Ignoring the rest...'
+                    en
 
-               let l:fg = IsColor(a:1[0])
-                           \ ? a:1[0]
-                           \ : GetColor(a:1[0], l:iface, 'fg')
-           en
-        el
-            echom 'You provided a list, but it was empty...'
+                    if IsIface(l:ai[1])
+                        l:allgrps[i][1] = tolower(l:ai[1])
+                    el
+                        echom "Expected 'gui' or 'cterm'... Got '"
+                                    \ . l:ai[1] . "'."
+                        echom "Using 'gui' by default"
+                        l:allgrps[i][1] = 'gui'
+                    en
+
+                    l:allgrps[i][0] = IsColor(l:an[0])
+                                \ ? l:an[0]
+                                \ : GetColor(
+                                        \ l:an[0],
+                                        \ l:allgrps[i][1],
+                                        \ l:ntogrp[i])
+                en
+            el
+                echom 'A list was provided, but it was empty...'
+            en
         en
-    en
+        if type(get(a:, i + 1, (i < 2 ? 'NONE' : 'none'))) == v:t_list
+            let l:anlen = len(a:(i + 1))
+        en
+    endfo
+endf
+
+""    if type(get(a:, 1, 'NONE') == v:t_list)
+"        let l:a1len = len(a:1)
+"        if l:a1len
+"           if l:alen >= 2
+"               if l:alen > 2
+"                   echom 'You provided more than 2 arguemnts for parameter '
+"                               \ . "'{fgHiGroup}'.  Ignoring the rest"
+"               en
+               
+"               if IsIface(a:1[1])
+"                   let l:iface = tolower(a:1[1])
+"               el
+"                   echom "Expected 'gui' or 'cterm'..  Got '" . a:1[1] . "'..."
+"                   echom "Using 'gui' as default!"
+"                   let l:iface = 'gui'
+"               en
+
+"               let l:fg = IsColor(a:1[0])
+"                           \ ? a:1[0]
+"                           \ : GetColor(a:1[0], l:iface, 'fg')
+"           en
+"        el
+"            echom 'You provided a list, but it was empty...'
+"        en
+"    en
 
     " This is all junk.  Ignore below here.-----------------------------------
     " gui or cterm.  (Default: gui)
-    let l:iface = get(a:, 5, 'gui')
+"    let l:iface = get(a:, 5, 'gui')
     " forground
-    let l:fg = IsColor(get(a:, 1, 'NONE')) ? a:1 : GetColor(a:1, l:iface, 'fg')
+"    let l:fg = IsColor(get(a:, 1, 'NONE')) ? a:1 : GetColor(a:1, l:iface, 'fg')
     " background
-    let l:bg = IsColor(get(a:, 2, 'NONE')) ? a:2 : GetColor(a:2, l:iface, 'bg')
+"    let l:bg = IsColor(get(a:, 2, 'NONE')) ? a:2 : GetColor(a:2, l:iface, 'bg')
 
-    let l:fg = (a:fg =~ '#' ? a:fg : GetColor(a:fg, 'gui', 'fg'))
-    let l:bf = (a:bg =~ '#' ? a:bg : GetColor(a:bg, 'gui', 'fg'))
-endf
+"    let l:fg = (a:fg =~ '#' ? a:fg : GetColor(a:fg, 'gui', 'fg'))
+"    let l:bf = (a:bg =~ '#' ? a:bg : GetColor(a:bg, 'gui', 'fg'))
+"endf
 
-fu! SetColorOLD(group, ...)
+"fu! SetColorOLD(group, ...)
     " gui, cterm or colorGroup
-    let l:a1 = (index([0, 1], get(a:, 1, 0)) == -1
-                \ ? a:1
-                \ : ['gui', 'cterm'][a:1])
-    echom l:a1
-    if l:a1 == a:1
+"    let l:a1 = (index([0, 1], get(a:, 1, 0)) == -1
+"                \ ? a:1
+"                \ : ['gui', 'cterm'][a:1])
+"    echom l:a1
+"    if l:a1 == a:1
         " gui or cterm
-        let l:a5 = get(a:, 5, 'gui')
-        echom l:a5
+"        let l:a5 = get(a:, 5, 'gui')
+"        echom l:a5
         " fg
-        let l:a2 = (get(a:, 2, 0) ? GetColor(l:a1, l:a5, 'fg') : 'NONE')
-        echom l:a2
+"        let l:a2 = (get(a:, 2, 0) ? GetColor(l:a1, l:a5, 'fg') : 'NONE')
+"        echom l:a2
         " bg
-        let l:a3 = (get(a:, 3, 0) ? GetColor(l:a1, l:a5, 'bg') : 'NONE')
-        echom l:a3
+"        let l:a3 = (get(a:, 3, 0) ? GetColor(l:a1, l:a5, 'bg') : 'NONE')
+"        echom l:a3
         " term
-        let l:a4 = (get(a:, 4, 0) ? GetColor(l:a1, l:a5, '') : 'none')
-        echom l:a4
-        exec 'hi ' . a:group . ' '
-                    \ . l:a5 . 'fg=' . l:a2 . ' '
-                    \ . l:a5 . 'bg=' . l:a3 . ' '
-                    \ . l:a5 . '=' . l:a4
-    en
-endf
+"        let l:a4 = (get(a:, 4, 0) ? GetColor(l:a1, l:a5, '') : 'none')
+"        echom l:a4
+"        exec 'hi ' . a:group . ' '
+"                    \ . l:a5 . 'fg=' . l:a2 . ' '
+"                    \ . l:a5 . 'bg=' . l:a3 . ' '
+"                    \ . l:a5 . '=' . l:a4
+"    en
+"endf
 
 "cal SetColor('lineNr', 'number', 1, 0, 0, 'gui')
 " vim
@@ -145,6 +192,7 @@ hi! link vimNumber      number
 hi! link vimNotFunc     conditional
 hi! link vimOper        operator
 hi! link vimOperParen   parameter
+hi! link vimSynType     type
 hi! link vimUserFunc    vimFunc
 hi! link vimVar         variable
 hi  conceal             guifg=#1f1f1f   guibg=NONE      cterm=none
