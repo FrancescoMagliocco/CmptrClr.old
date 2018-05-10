@@ -229,6 +229,7 @@ hi! link cNumber            number
 hi! link cPreCondit         preCondit
 hi! link cPreContiMatch     cPreCondit
 hi! link cRepeat            repeat
+hi! link cSpecial           special
 hi! link cStatement         statement
 hi! link cString            string
 hi! link cStructure         structure
