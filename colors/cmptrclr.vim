@@ -398,7 +398,8 @@ hi! link vimOperParen   parameter
 hi! link vimOption      option
 
 " TODO: Change the color of this
-hi! link vimParenSep    special
+hi! link vimParenSep        special
+hi! link vimPythonRegion    preProc
 
 " NOTE: I don't know what I want to do with this one as it's the equal sign,
 "   value after it in some cases...
@@ -408,6 +409,7 @@ hi! link vimSetEqual    vimOper
 hi! link vimSetMod      format
 hi! link vimString      string
 hi! link vimSynType     type
+hi! link vimScriptDelim vimComment
 hi! link vimTodo        todo
 hi! link vimUserFunc    vimFunc
 hi! link vimVar         variable
