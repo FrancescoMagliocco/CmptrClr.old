@@ -100,7 +100,10 @@ endf
 hi  normal              guifg=#ffffff   guibg=#000000   cterm=none
 
 hi  attribute           guifg=#0073e6   guibg=NONE      cterm=none
+
+" FIXME: I do not like this color for this group.
 hi  boolean             guifg=#800055   guibg=NONE      cterm=none
+hi  braces              guifg=#5000ff   guibg=NONE      cterm=bold
 hi  character           guifg=#e60000   guibg=NONE      cterm=none
 hi  comment             guifg=#505050   guibg=NONE      cterm=none
 hi  commentStart        guifg=#404040   guibg=NONE      cterm=none
@@ -109,7 +112,6 @@ hi  conditional         guifg=#7600eb   guibg=NONE      cterm=none
 hi  constant            guifg=#e6e600   guibg=NONE      cterm=none
 hi  define              guifg=#8000ff   guibg=NONE      cterm=none
 
-hi  dot                 guifg=#ff00ff   guibg=NONE      cterm=none
 hi  emphasis            guifg=#ff00ff   guibg=NONE      cterm=none
 hi  enumName            guifg=#4c9a00   guibg=NONE      cterm=none
 hi  error               guifg=#b30000   guibg=NONE      cterm=none
@@ -117,15 +119,20 @@ hi  escape              guifg=#800000   guibg=NONE      cterm=none
 hi  float               guifg=#ff2500   guibg=NONE      cterm=none
 hi  format              guifg=#b30000   guibg=NONE      cterm=underline
 hi  functionName        guifg=#006734   guibg=NONE      cterm=none
-hi  identifier          guifg=#00e600   guibg=NONE      cterm=none
+hi  identifier          guifg=#00aa18   guibg=NONE      cterm=none
 hi  include             guifg=#e700a0   guibg=NONE      cterm=none
 hi  member              guifg=#ffbf00   guibg=NONE      cterm=none
 hi  method              guifg=#0080ff   guibg=NONE      cterm=none
+
+" NOTE: Might actually make this red beacuse this color does not stand out so
+"   well.
+hi  noise               guifg=#b50000   guibg=NONE      cterm=bold
 hi  number              guifg=#ff0000   guibg=NONE      cterm=none
 
+" NOTE: This is hard to see in some situtations.
+hi  operator            guifg=#5000ff   guibg=NONE      cterm=none
 " FIXME: I don't like this at all..
-"hi  operator            guifg=#5000ff   guibg=NONE      cterm=none
-hi  operator            guifg=#b400b3   guibg=NONE      cterm=none
+"hi  operator            guifg=#b400b3   guibg=NONE      cterm=none
 hi  option              guifg=#9c1add   guibg=NONE      cterm=none
 hi  parameter           guifg=#b300b3   guibg=NONE      cterm=none
 
@@ -140,9 +147,7 @@ hi  special             guifg=#cc0000   guibg=NONE      cterm=none
 hi  statement           guifg=#0000e6   guibg=NONE      cterm=none
 hi  storageClass        guifg=#ff5f5f   guibg=NONE      cterm=none
 
-" NOTE: Kinda not likeing using the color yellow for string..  But kinda am at
-"   the same time...
-hi  string              guifg=#ffff00   guibg=NONE      cterm=none
+hi  string              guifg=#b500b5   guibg=NONE      cterm=none
 hi  structure           guifg=#ff9000   guibg=NONE      cterm=none
 
 hi  title               guifg=#00ff00   guibg=NONE      cterm=none
@@ -157,6 +162,8 @@ hi! link note           title
 hi! link errorMsg       error
 hi! link warningMsg     warning
 hi! link exception      warning
+hi! link quote          noise
+hi! link dot            noise
 
 " C
 hi! link cAnsiFunction      functionName
@@ -195,6 +202,17 @@ hi  gitGutterDeleteDefault  guifg=#ff0000   guibg=#101010   cterm=none
 hi! link gitGutterAddInvisible      gitGutterAddDefault
 hi! link gitGutterChangeInvisible   gitGutterChangeDefault
 hi! link gitGutterDeleteInvisible   gitGutterDeleteDefault
+
+" json
+hi! link jsonBraces         braces
+
+" NOTE: The usage is more like an identifer, so I'm using identifier rather
+"   than statement.
+hi! link jsonKeyword        identifier
+hi! link jsonKeywordMatch   special
+hi! link jsonNoise          noise
+hi! link jsonString         string
+hi! link jsonQuote          quote
 
 " make
 hi! link makeCommands           command
@@ -249,6 +267,33 @@ hi! link rstInlineLiteral                       string
 hi! link rstInterpretedTextOrHyperLinkReference reference
 hi! link rstSections                            title
 hi! link rstStandaloneHyperlink                 url
+
+" sh
+hi! link shArithRegion          preProc
+hi! link shComment              comment
+
+" NOTE: This was originally "string", but "echo -e", the "-e" part to me is
+"   of an "Option", hense why I have used the hilight group "option".
+hi! link shEcho                 option
+hi! link shOption               option
+hi! link shQuote                quote
+
+" TODO: Reword this to make sense.
+" NOTE: Despite the name being "shSingleQuote", the example of which I based my
+"   decision off of here, was content that was inside of a single quote.
+"   "shSingleQuote" was not actually displaying its usage for a quote.
+hi! link shSingleQuote          string
+
+
+" NOTE: This was originally linked to "operator", but since it says "redir" in
+"   the name, which I'm guessing stands for "Redirection", I'm going to use
+"   "Special" as the highlight group.
+hi! link shRedir                special
+
+" NOTE: Instead of using "statement", I'm using "command" because "echo" to me
+"   is more of a "command" rather than a "statement", but depending on what
+"   other keywords this is used for, this may be changed back to "statement".
+hi! link shStatement            command
 
 " vim buffers
 hi  conceal             guifg=#1f1f1f   guibg=NONE      cterm=none
