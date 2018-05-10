@@ -178,7 +178,7 @@ hi! link asciidocEntryRef           reference
 " NOTE: If using "special" clashes with the use of "special" anywhere else for
 "   asciidoc, think about using "identifier" or creating some type of delimiter
 "   group.
-hi! link asciiidocListBullet        special
+hi! link asciidocListBullet         special
 
 " NOTE: Even though this is more of a "reference" than a "macro", when you
 "   about it, it actually is more like a "macro" as it allows you to not have
