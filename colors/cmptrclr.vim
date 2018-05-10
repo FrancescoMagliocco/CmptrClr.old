@@ -290,6 +290,7 @@ hi! link pythonImport           include
 hi! link pythonNone             type
 hi! link pythonNumber           number
 hi! link pythonOperator         operator
+hi! link pythonQuotes           quote
 hi! link pythonRepeat           repeat
 hi! link pythonRun              commentStart
 hi! link pythonStatement        statement
