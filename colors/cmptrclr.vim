@@ -100,6 +100,7 @@ endf
 hi  normal              guifg=#ffffff   guibg=#000000   cterm=none
 
 hi  attribute           guifg=#0073e6   guibg=NONE      cterm=none
+hi  boolean             guifg=#800055   guibg=NONE      cterm=none
 hi  character           guifg=#e60000   guibg=NONE      cterm=none
 hi  comment             guifg=#505050   guibg=NONE      cterm=none
 hi  commentStart        guifg=#404040   guibg=NONE      cterm=none
@@ -109,9 +110,11 @@ hi  constant            guifg=#e6e600   guibg=NONE      cterm=none
 hi  define              guifg=#8000ff   guibg=NONE      cterm=none
 
 hi  dot                 guifg=#ff00ff   guibg=NONE      cterm=none
+hi  emphasis            guifg=#ff00ff   guibg=NONE      cterm=none
 hi  enumName            guifg=#4c9a00   guibg=NONE      cterm=none
 hi  error               guifg=#b30000   guibg=NONE      cterm=none
 hi  escape              guifg=#800000   guibg=NONE      cterm=none
+hi  float               guifg=#ff2500   guibg=NONE      cterm=none
 hi  format              guifg=#b30000   guibg=NONE      cterm=underline
 hi  functionName        guifg=#006734   guibg=NONE      cterm=none
 hi  identifier          guifg=#00e600   guibg=NONE      cterm=none
@@ -125,13 +128,17 @@ hi  number              guifg=#ff0000   guibg=NONE      cterm=none
 hi  operator            guifg=#b400b3   guibg=NONE      cterm=none
 hi  option              guifg=#9c1add   guibg=NONE      cterm=none
 hi  parameter           guifg=#b300b3   guibg=NONE      cterm=none
+
+" NOTE: Not to sure how I feel about this color...
+hi  preCondit           guifg=#004566   guibg=NONE      cterm=none
 hi  preProc             guifg=#e600e6   guibg=NONE      cterm=none
+hi  reference           guifg=#0055ee   guibg=NONE      cterm=none
 
 " NOTE: Not sure if I like this..
 hi  repeat              guifg=#4e00aa   guibg=NONE      cterm=none
 hi  special             guifg=#cc0000   guibg=NONE      cterm=none
 hi  statement           guifg=#0000e6   guibg=NONE      cterm=none
-"hi  storageClass        guifg=#
+hi  storageClass        guifg=#ff5f5f   guibg=NONE      cterm=none
 
 " NOTE: Kinda not likeing using the color yellow for string..  But kinda am at
 "   the same time...
@@ -139,7 +146,9 @@ hi  string              guifg=#ffff00   guibg=NONE      cterm=none
 hi  structure           guifg=#ff9000   guibg=NONE      cterm=none
 
 hi  title               guifg=#00ff00   guibg=NONE      cterm=none
-hi  type                guifg=#ff4000   guibg=NONE      cterm=none
+hi  type                guifg=#ff5000   guibg=NONE      cterm=none
+hi  underlined          guifg=#0055ee   guibg=NONE      cterm=underline
+hi  url                 guifg=#0055ee   guibg=NONE      cterm=underline
 hi  variable            guifg=#00ebeb   guibg=NONE      cterm=none
 hi  warning             guifg=#b35a00   guibg=NONE      cterm=none
 
@@ -147,6 +156,36 @@ hi! link function       functionName
 hi! link note           title
 hi! link errorMsg       error
 hi! link warningMsg     warning
+hi! link exception      warning
+
+" C
+hi! link cAnsiFunction      functionName
+hi! link cAnsiName          preProc
+hi! link cBoolean           boolean
+hi! link cCommentStart      commentStart
+hi! link cComment           comment
+hi! link cCommentL          cComment
+hi! link cConditional       conditional
+
+" NOTE: 'NULL' is in this group
+hi! link cConstant          constant
+hi! link cCppString         string
+hi! link cCustomFunc        cAnsiFunction
+hi! link cDefine            define
+hi! link cFloat             float
+hi! link cFormat            format
+hi! link cInclude           include
+
+" TODO: Use a different color for this
+hi! link cIncluded          string
+hi! link cNumber            number
+hi! link cPreCondit         preCondit
+hi! link cPreContiMatch     cPreCondit
+hi! link cRepeat            repeat
+hi! link cStatement         statement
+hi! link cString            string
+hi! link cStructure         structure
+hi! link cType              type
 
 " Git
 hi  gitGutterAddDefault     guifg=#00ff00   guibg=#101010   cterm=none
@@ -157,13 +196,35 @@ hi! link gitGutterAddInvisible      gitGutterAddDefault
 hi! link gitGutterChangeInvisible   gitGutterChangeDefault
 hi! link gitGutterDeleteInvisible   gitGutterDeleteDefault
 
+" make
+hi! link makeCommands           command
+hi! link makeComment            comment
+
+" NOTE:  I don't really like this..  When I think of something like "$(VVAL)",
+"   I think of the color purple (And its shades), or the color green.
+hi! link makeIdent              variable
+hi! link makePreCondit          preCondit
+hi! link makeTarget             functionName
+
+" Markdown
+hi! link mkdCode                preProc
+hi! link mkdDelimiter           special
+hi! link mkdLink                reference
+hi! link mkdNonListItemBlock    normal
+hi! link mkdURL                 url
+
 " Python
 hi! link pythonBuiltInFunc      functionName
 hi! link pythonBuiltInObj       type
 hi! link pythonBytesEscape      escape
+hi! link pythonCoding           commentStart
 hi! link pythonComment          comment
 hi! link pythonConditional      conditional
 hi! link pythonDot              dot
+
+" NOTE: Could possibly use "warning" here as well.
+hi! link pythonException        statement
+hi! link pythonExClass          exception
 hi! link pythonFunction         pythonBuiltInFunc
 hi! link pythonImport           include
 
@@ -181,6 +242,13 @@ hi! link pythonStrFormat        format
 "   'format' is because when I saw the example of this group, it was one long
 "   string, and I did not want an underline through the whole thing.
 hi! link pythonStringFormatting special
+
+" rst
+hi! link rstEmphasis                            emphasis
+hi! link rstInlineLiteral                       string
+hi! link rstInterpretedTextOrHyperLinkReference reference
+hi! link rstSections                            title
+hi! link rstStandaloneHyperlink                 url
 
 " vim buffers
 hi  conceal             guifg=#1f1f1f   guibg=NONE      cterm=none
