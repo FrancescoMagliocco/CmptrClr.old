@@ -235,6 +235,14 @@ hi! link cString            string
 hi! link cStructure         structure
 hi! link cType              type
 
+" cfg
+" NOTE: 'True' and 'False'
+hi! link cfgOnOff           boolean
+hi! link cfgSection         title
+
+" NOTE: The actual value can be more than just a number.
+hi! link cfgValues          number
+
 " Git
 hi  gitGutterAddDefault     guifg=#00ff00   guibg=#101010   cterm=none
 hi  gitGutterChangeDefault  guifg=#ffff00   guibg=#101010   cterm=none
