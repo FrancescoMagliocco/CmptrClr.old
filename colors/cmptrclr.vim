@@ -254,6 +254,8 @@ hi! link cfgValues          number
 hi! link confComment        comment
 hi! link confString         string
 
+hi! link cTagsGlobalVariable    constant
+
 " d
 " NOTE: There doesn't seem to be a color syntax highlighter for this..
 "   "abstract.h" is being highlighted as a "storageClass"
