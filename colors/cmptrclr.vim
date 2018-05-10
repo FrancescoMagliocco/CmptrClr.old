@@ -200,7 +200,7 @@ hi! link asciidocQuotedEmphasized           emphasis
 hi! link asciidocQuotedEmphasized2          asciidocQuotedEmphasized
 hi! link asciidocQuotedUnconstrainedBold    asciidocQuotedBold
 hi! link asciidocTableBlock                 asciidocList
-hi! link asciidocTableDelimiter             speical
+hi! link asciidocTableDelimiter             special
 
 " NOTE: I have mixed feelings about this one..
 hi! link asciidocTablePrefix        preProc
