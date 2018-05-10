@@ -213,6 +213,7 @@ hi! link asciidocTablePrefix        preProc
 hi! link cAnsiFunction      functionName
 hi! link cAnsiName          preProc
 hi! link cBoolean           boolean
+hi! link cCharacter         character
 hi! link cCommentStart      commentStart
 hi! link cComment           comment
 hi! link cCommentL          cComment
@@ -233,6 +234,7 @@ hi! link cLabel             label
 hi! link cNumber            number
 hi! link cPreCondit         preCondit
 hi! link cPreContiMatch     cPreCondit
+hi! link cPreProc           preProc
 hi! link cRepeat            repeat
 hi! link cSpecial           special
 hi! link cStatement         statement
@@ -317,20 +319,35 @@ hi! link mkdURL                 url
 hi  objcInstanceMethod  guifg=#ffff00   guibg=NONE      cterm=none
 
 hi! link objcClass      class
+hi! link objcColon      special
+hi! link objcConstsVar  constant
 
 " NOTE: I've got no fucking idea what this is..  Maybe a bug in syntax
 "   syntax highlighting?
 hi! link objcDeclPropAccessorNameAssign storageClass
-hi! link objcObjcDef                    define
+hi! link objcObjDef                     define
+
+" NOTE: In previous languages, I used statement for exceptions.
+hi! link objcException                  warning
+
+" NOTE: Not sure if I want to make a sepparate group for arguemnts or not..
+" NOTE: May also choose to make this be linked to "identifier" because that's
+"   what i've got pythons version of "self" linked too.
+hi! link objcHiddenArgument             parameter
+hi! link objcImport                     include
+hi! link objcImported                   included
+hi! link objcInternalRep                operator
 
 " NOTE: I guess this could also be seen as a "functionName", but I have never
 "   coded in objc before.
 " NOTE: Could also be colored with "method" being that it has the word 'method'
 "   in it...  (Don't judge me.  xD)
-hi! link objcMethodCall method
-hi! link objcString     string
-hi! link objcType       type
-hi! link objcUsefulTerm constant
+hi! link objcMethodCall     method
+hi! link objcPrincipalType  objcType
+hi! link objcSpecial        special
+hi! link objcString         string
+hi! link objcType           type
+hi! link objcUsefulTerm     constant
 
 " Python
 hi! link pythonBoolean          boolean
