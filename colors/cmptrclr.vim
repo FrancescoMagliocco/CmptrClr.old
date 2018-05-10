@@ -273,9 +273,11 @@ hi! link mkdNonListItemBlock    normal
 hi! link mkdURL                 url
 
 " Python
+hi! link pythonBoolean          boolean
 hi! link pythonBuiltInFunc      functionName
 hi! link pythonBuiltInObj       type
 hi! link pythonBytesEscape      escape
+hi! link pythonClassVar         identifier
 hi! link pythonCoding           commentStart
 hi! link pythonComment          comment
 hi! link pythonConditional      conditional
@@ -284,6 +286,7 @@ hi! link pythonDot              dot
 " NOTE: Could possibly use "warning" here as well.
 hi! link pythonException        statement
 hi! link pythonExClass          exception
+hi! link pythonFloat            float
 hi! link pythonFunction         pythonBuiltInFunc
 hi! link pythonImport           include
 
