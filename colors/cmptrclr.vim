@@ -165,6 +165,46 @@ hi! link exception      warning
 hi! link quote          noise
 hi! link dot            noise
 
+" asciidoc
+" TODO: Make sure doesn't clash with "comment"
+hi  asciidocList        guifg=#606060   guibg=NONE      cterm=none
+hi  asciidocQuotedBold  guifg=#ffffff   guibg=NONE      cterm=none
+
+hi! link asciidocAttributeEntry     attribute
+hi! link asciidocAttributeList      asciidocAttributeEntry
+hi! link asciidocBackslash          escape
+hi! link asciidocEntryRef           reference
+
+" NOTE: If using "special" clashes with the use of "special" anywhere else for
+"   asciidoc, think about using "identifier" or creating some type of delimiter
+"   group.
+hi! link asciiidocListBullet        special
+
+" NOTE: Even though this is more of a "reference" than a "macro", when you
+"   about it, it actually is more like a "macro" as it allows you to not have
+"   to type out the whole path of a link.  Also, the group
+"   "asciidocMacroAttributes" is more of a "reference" because it is
+"   linking towards something, but it's not actually a link its self.
+" TODO: Reword this.
+hi! link asciidocMacro              preProc
+hi! link asciidocMacroAttributes    reference
+hi! link asciidocOneLineTitle       title
+
+" NOTE: Orignally linked to "identifier".  Using "preProc" here doens't make
+"   sense as I have mostly used "preProc" for macros and alike.  This is more
+"   of a code type highlight group.
+hi! link asciidocQuotedMonospaced2  preProc
+
+" NOTE: Originally was linked to highlight group "type"
+hi! link asciidocQuotedEmphasized           emphasis
+hi! link asciidocQuotedEmphasized2          asciidocQuotedEmphasized
+hi! link asciidocQuotedUnconstrainedBold    asciidocQuotedBold
+hi! link asciidocTableBlock                 asciidocList
+hi! link asciidocTableDelimiter             speical
+
+" NOTE: I have mixed feelings about this one..
+hi! link asciidocTablePrefix        preProc
+
 " C
 hi! link cAnsiFunction      functionName
 hi! link cAnsiName          preProc
