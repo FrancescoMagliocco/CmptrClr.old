@@ -97,7 +97,6 @@ fu! SetColor(group, ...)
     endfo
 endf
 
-cal SetColor('test', ['normal', 'gui'], ['attribute', 'gui'], ['todo', 'gui'])
 hi  normal              guifg=#ffffff   guibg=#000000   cterm=none
 
 hi  attribute           guifg=#0073e6   guibg=NONE      cterm=none
@@ -108,43 +107,129 @@ hi  command             guifg=#005ab3   guibg=NONE      cterm=none
 hi  conditional         guifg=#7600eb   guibg=NONE      cterm=none
 hi  constant            guifg=#e6e600   guibg=NONE      cterm=none
 hi  define              guifg=#8000ff   guibg=NONE      cterm=none
-hi  format              guifg=#b30000   guibg=NONE      cterm=none
+
+hi  dot                 guifg=#ff00ff   guibg=NONE      cterm=none
+hi  enumName            guifg=#4c9a00   guibg=NONE      cterm=none
+hi  error               guifg=#b30000   guibg=NONE      cterm=none
+hi  escape              guifg=#800000   guibg=NONE      cterm=none
+hi  format              guifg=#b30000   guibg=NONE      cterm=underline
 hi  functionName        guifg=#006734   guibg=NONE      cterm=none
 hi  identifier          guifg=#00e600   guibg=NONE      cterm=none
+hi  include             guifg=#e700a0   guibg=NONE      cterm=none
+hi  member              guifg=#ffbf00   guibg=NONE      cterm=none
 hi  method              guifg=#0080ff   guibg=NONE      cterm=none
 hi  number              guifg=#ff0000   guibg=NONE      cterm=none
-hi  operator            guifg=#7300e6   guibg=NONE      cterm=none
+
+" FIXME: I don't like this at all..
+"hi  operator            guifg=#5000ff   guibg=NONE      cterm=none
+hi  operator            guifg=#b400b3   guibg=NONE      cterm=none
+hi  option              guifg=#9c1add   guibg=NONE      cterm=none
 hi  parameter           guifg=#b300b3   guibg=NONE      cterm=none
 hi  preProc             guifg=#e600e6   guibg=NONE      cterm=none
+
+" NOTE: Not sure if I like this..
+hi  repeat              guifg=#4e00aa   guibg=NONE      cterm=none
 hi  special             guifg=#cc0000   guibg=NONE      cterm=none
 hi  statement           guifg=#0000e6   guibg=NONE      cterm=none
+"hi  storageClass        guifg=#
 
-" NOTE: May change the fg here.
-hi  todo                guifg=#ff4500   guibg=NONE      cterm=none
+" NOTE: Kinda not likeing using the color yellow for string..  But kinda am at
+"   the same time...
+hi  string              guifg=#ffff00   guibg=NONE      cterm=none
+hi  structure           guifg=#ff9000   guibg=NONE      cterm=none
 
 hi  title               guifg=#00ff00   guibg=NONE      cterm=none
-hi  type                guifg=#ff8000   guibg=NONE      cterm=none
+hi  type                guifg=#ff4000   guibg=NONE      cterm=none
 hi  variable            guifg=#00ebeb   guibg=NONE      cterm=none
+hi  warning             guifg=#b35a00   guibg=NONE      cterm=none
 
+hi! link function       functionName
 hi! link note           title
+hi! link errorMsg       error
+hi! link warningMsg     warning
+
+" Git
+hi  gitGutterAddDefault     guifg=#00ff00   guibg=#101010   cterm=none
+hi  gitGutterChangeDefault  guifg=#ffff00   guibg=#101010   cterm=none
+hi  gitGutterDeleteDefault  guifg=#ff0000   guibg=#101010   cterm=none
+
+hi! link gitGutterAddInvisible      gitGutterAddDefault
+hi! link gitGutterChangeInvisible   gitGutterChangeDefault
+hi! link gitGutterDeleteInvisible   gitGutterDeleteDefault
+
+" Python
+hi! link pythonBuiltInFunc      functionName
+hi! link pythonBuiltInObj       type
+hi! link pythonBytesEscape      escape
+hi! link pythonComment          comment
+hi! link pythonConditional      conditional
+hi! link pythonDot              dot
+hi! link pythonFunction         pythonBuiltInFunc
+hi! link pythonImport           include
+
+" NOTE: I may change this.
+hi! link pythonNone             type
+hi! link pythonNumber           number
+hi! link pythonOperator         operator
+hi! link pythonRepeat           repeat
+hi! link pythonRun              commentStart
+hi! link pythonStatement        statement
+hi! link pythonString           string
+hi! link pythonStrFormat        format
+
+" NOTE: This clashes with 'pythonBytesEscape'.  The reason why I'm not using
+"   'format' is because when I saw the example of this group, it was one long
+"   string, and I did not want an underline through the whole thing.
+hi! link pythonStringFormatting special
 
 " vim buffers
 hi  conceal             guifg=#1f1f1f   guibg=NONE      cterm=none
 hi  cursorLine          guifg=NONE      guibg=#151515   cterm=none
+hi  cursorLineNr        guifg=#ff0000   guibg=#000000   cterm=none
 hi  colorColumn         guifg=NONE      guibg=#1e1e1e   cterm=none
 hi  lineNr              guifg=#ff0000   guibg=#1e1e1e   cterm=none
+hi  matchParen          guifg=#000000   guibg=#ffff00   cterm=none
+hi  spellBad            guifg=#b30000   guibg=NONE      cterm=underline
+hi  visual              guifg=#ffffff   guibg=#ff8000   cterm=none
+hi  vertSplit           guifg=#ff0000   guibg=#1e1e1e   cterm=none
 
 hi! link cursorColumn   cursorLine
+hi! link todo           type
 
 " vim
+hi  vimCommentString    guifg=#909090   guibg=NONE      cterm=none
+"hi  vimFuncVar          guifg=#00eb76   guibg=NONE      cterm=none
+hi  vimFuncVar          guifg=#006767   guibg=NONE      cterm=none
+
 hi! link vimCommand         command
+hi! link vimComment         comment
 hi! link vimCommentTitle    title
+hi! link vimContinue        escape
 hi! link vimFBVar           vimVar
+hi! link vimFgBgAttrib      vimHiAttrib
+hi! link vimFTCmd           vimCommand
+hi! link vimFTOption        vimOption
 hi! link vimFunc            functionName
+
+" NOTE: The only time I have actually seen this group is in whitespace of some
+"   functions.
+hi! link vimFuncBody        vimFunc
+hi! link vimFuncKey         vimCommand
 hi! link vimFuncName        vimFunc
 hi! link vimFunction        vimFunc
+hi! link vimGroup           structure
+hi! link vimHiAttrib        attribute
+hi! link vimHiBang          vimFunction
+hi! link vimHiClear         vimOption
+hi! link vimHiCterm         member
 hi! link vimHighlight       vimCommand
-hi! link vimLineComment     comment
+hi! link vimHiGroup         vimGroup
+hi! link vimHiGuiFgBg       vimHiCterm
+hi! link vimHiGuiRgb        vimNumber
+hi! link vimIsCommand       vimCommand
+hi! link vimHiKeyList       vimOper
+hi! link vimLet             vimCommand
+hi! link vimLineComment     vimComment
 hi! link vimNumber          number
 hi! link vimNote            note
 
@@ -152,13 +237,27 @@ hi! link vimNote            note
 " 'vimNotFunc', it was on an 'if'.
 hi! link vimNotFunc     conditional
 hi! link vimOper        operator
+
+" NOTE: This colors a lot more than what I originally thought it did.
+"   Originally I thought it was the parameters because that's where I
+"   discovered this group.
 hi! link vimOperParen   parameter
+hi! link vimOption      option
+
+" TODO: Change the color of this
+hi! link vimParenSep    special
+
+" NOTE: I don't know what I want to do with this one as it's the equal sign,
+"   value after it in some cases...
+" NOTE: 'vimHiKeyList' which I have only seen to be an equal sign when doing
+"   assignments such as 'cterm=bold' is linked to 'vimOper'
+hi! link vimSetEqual    vimOper
+hi! link vimSetMod      format
+hi! link vimString      string
 hi! link vimSynType     type
 hi! link vimTodo        todo
 hi! link vimUserFunc    vimFunc
 hi! link vimVar         variable
-hi  vimFuncVar          guifg=#00eb76   guibg=NONE      cterm=none
-" TODO: Color 'vimStringComment
 finish
 
 ""    if type(get(a:, 1, 'NONE') == v:t_list)
