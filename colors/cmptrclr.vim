@@ -265,6 +265,22 @@ hi! link gitGutterAddInvisible      gitGutterAddDefault
 hi! link gitGutterChangeInvisible   gitGutterChangeDefault
 hi! link gitGutterDeleteInvisible   gitGutterDeleteDefault
 
+" glsl
+hi! link glslBuiltinFunction    functionName
+hi! link glslBuiltinVariable    variable
+hi! link glslCommentL           comment
+hi! link glslConditional        conditional
+hi! link glslDecimalInt         number
+hi! link glslDefine             define
+hi! link glslFloat              float
+hi! link glslHexInt             glslDecimalInt
+hi! link glslPreCondit          preCondit
+hi! link glslPreProc            preProc
+hi! link glslQualifier          storageClass
+hi! link glslStatement          statement
+hi! link glslSwizzle            member
+hi! link glslType               type
+
 " json
 hi! link jsonBraces         braces
 
