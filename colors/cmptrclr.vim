@@ -105,6 +105,9 @@ hi  attribute           guifg=#0073e6   guibg=NONE      cterm=none
 hi  boolean             guifg=#800055   guibg=NONE      cterm=none
 hi  braces              guifg=#5000ff   guibg=NONE      cterm=bold
 hi  character           guifg=#e60000   guibg=NONE      cterm=none
+
+" TODO: Make sure this looks good.
+hi  class               guifg=#ffaa00   guibg=NONE      cterm=none
 hi  comment             guifg=#505050   guibg=NONE      cterm=none
 hi  commentStart        guifg=#404040   guibg=NONE      cterm=none
 hi  command             guifg=#005ab3   guibg=NONE      cterm=none
@@ -121,6 +124,7 @@ hi  format              guifg=#b30000   guibg=NONE      cterm=underline
 hi  functionName        guifg=#006734   guibg=NONE      cterm=none
 hi  identifier          guifg=#00aa18   guibg=NONE      cterm=none
 hi  include             guifg=#e700a0   guibg=NONE      cterm=none
+hi  label               guifg=#0055ff   guibg=NONE      cterm=none
 hi  member              guifg=#ffbf00   guibg=NONE      cterm=none
 hi  method              guifg=#0080ff   guibg=NONE      cterm=none
 
@@ -225,6 +229,7 @@ hi! link cInclude           include
 
 " TODO: Use a different color for this
 hi! link cIncluded          string
+hi! link cLabel             label
 hi! link cNumber            number
 hi! link cPreCondit         preCondit
 hi! link cPreContiMatch     cPreCondit
@@ -284,6 +289,28 @@ hi! link mkdDelimiter           special
 hi! link mkdLink                reference
 hi! link mkdNonListItemBlock    normal
 hi! link mkdURL                 url
+
+" objc
+" NOTE: When I think of "instance", I think of the color yellow.  But it says
+"   it's a "method", so I'm not sure if I should use the color "yellow", or the
+"   group "method"..
+hi  objcInstanceMethod  guifg=#ffff00   guibg=NONE      cterm=none
+
+hi! link objcClass      class
+
+" NOTE: I've got no fucking idea what this is..  Maybe a bug in syntax
+"   syntax highlighting?
+hi! link objcDeclPropAccessorNameAssign storageClass
+hi! link objcObjcDef                    define
+
+" NOTE: I guess this could also be seen as a "functionName", but I have never
+"   coded in objc before.
+" NOTE: Could also be colored with "method" being that it has the word 'method'
+"   in it...  (Don't judge me.  xD)
+hi! link objcMethodCall method
+hi! link objcString     string
+hi! link objcType       type
+hi! link objcUsefulTerm constant
 
 " Python
 hi! link pythonBoolean          boolean
