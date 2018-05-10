@@ -248,6 +248,9 @@ hi! link cfgSection         title
 " NOTE: The actual value can be more than just a number.
 hi! link cfgValues          number
 
+" conf
+hi! link confComment        comment
+
 " d
 " NOTE: There doesn't seem to be a color syntax highlighter for this..
 "   "abstract.h" is being highlighted as a "storageClass"
@@ -269,6 +272,7 @@ hi! link jsonBraces         braces
 "   than statement.
 hi! link jsonKeyword        identifier
 hi! link jsonKeywordMatch   special
+hi! link jsonNumber         number
 hi! link jsonNoise          noise
 hi! link jsonString         string
 hi! link jsonQuote          quote
