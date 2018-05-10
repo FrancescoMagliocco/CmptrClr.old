@@ -243,6 +243,11 @@ hi! link cfgSection         title
 " NOTE: The actual value can be more than just a number.
 hi! link cfgValues          number
 
+" d
+" NOTE: There doesn't seem to be a color syntax highlighter for this..
+"   "abstract.h" is being highlighted as a "storageClass"
+hi! link dStorageClass      storageClass
+
 " Git
 hi  gitGutterAddDefault     guifg=#00ff00   guibg=#101010   cterm=none
 hi  gitGutterChangeDefault  guifg=#ffff00   guibg=#101010   cterm=none
