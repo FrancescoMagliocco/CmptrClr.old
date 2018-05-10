@@ -252,6 +252,7 @@ hi! link cfgValues          number
 
 " conf
 hi! link confComment        comment
+hi! link confString         string
 
 " d
 " NOTE: There doesn't seem to be a color syntax highlighter for this..
