@@ -102,21 +102,23 @@ hi  normal              guifg=#ffffff   guibg=#000000   cterm=none
 hi  attribute           guifg=#0073e6   guibg=NONE      cterm=none
 
 " FIXME: I do not like this color for this group.
-hi  boolean             guifg=#800055   guibg=NONE      cterm=none
+hi  boolean             guifg=#c400c4   guibg=NONE      cterm=none
 hi  braces              guifg=#5000ff   guibg=NONE      cterm=bold
 hi  character           guifg=#e60000   guibg=NONE      cterm=none
 
 " TODO: Make sure this looks good.
-hi  class               guifg=#ffaa00   guibg=NONE      cterm=none
+"hi  class               guifg=#ffaa00   guibg=NONE      cterm=none
+hi  class               guifg=#00ff00   guibg=NONE      cterm=none
 hi  comment             guifg=#505050   guibg=NONE      cterm=none
 hi  commentStart        guifg=#404040   guibg=NONE      cterm=none
 hi  command             guifg=#005ab3   guibg=NONE      cterm=none
 hi  conditional         guifg=#7600eb   guibg=NONE      cterm=none
 hi  constant            guifg=#e6e600   guibg=NONE      cterm=none
 hi  define              guifg=#8000ff   guibg=NONE      cterm=none
-
+hi  cTagsDefinedName    guifg=#c400c4   guibg=NONE      cterm=none
 hi  emphasis            guifg=#ff00ff   guibg=NONE      cterm=none
 hi  enumName            guifg=#4c9a00   guibg=NONE      cterm=none
+hi  directive           guifg=#9a0044   guibg=NONE      cterm=none
 hi  error               guifg=#b30000   guibg=NONE      cterm=none
 hi  escape              guifg=#800000   guibg=NONE      cterm=none
 hi  float               guifg=#ff2500   guibg=NONE      cterm=none
@@ -148,7 +150,8 @@ hi  reference           guifg=#0055ee   guibg=NONE      cterm=none
 " NOTE: Not sure if I like this..
 hi  repeat              guifg=#4e00aa   guibg=NONE      cterm=none
 hi  special             guifg=#cc0000   guibg=NONE      cterm=none
-hi  statement           guifg=#0000e6   guibg=NONE      cterm=none
+hi  statement           guifg=#0022ff   guibg=NONE      cterm=none
+"hi  statement           guifg=#0000e6   guibg=NONE      cterm=none
 hi  storageClass        guifg=#ff5f5f   guibg=NONE      cterm=none
 
 hi  string              guifg=#b500b5   guibg=NONE      cterm=none
@@ -167,7 +170,21 @@ hi! link errorMsg       error
 hi! link warningMsg     warning
 hi! link exception      warning
 hi! link quote          noise
-hi! link dot            noise
+hi dot                  guifg=#ffff00   guibg=NONE      cterm=bold
+
+" asm
+hi! link asmDirective   directive
+
+" I'm using variable beause in the .data section, vim highlights the variables
+"   nasmLabels
+hi! link nasmLabel          functionName
+hi! link nasmComment        comment
+hi  nasmLocalLabel      guifg=#00ff00   guibg=NONE      cterm=none
+"hi! link nasmLocalLabel     reference
+hi! link nasmDirective      directive
+hi! link nasmStdInstruction command
+hi! link nasmGen32Register  cTagsDefinedName
+hi! link nasmMemReference   special
 
 " asciidoc
 " TODO: Make sure doesn't clash with "comment"
@@ -286,6 +303,12 @@ hi! link glslStatement          statement
 hi! link glslSwizzle            member
 hi! link glslType               type
 
+" html
+hi  htmlBold                guifg=#909090   guibg=NONE      cterm=bold
+hi  htmlItalic              guifg=#909090   guibg=NONE      cterm=none
+hi  htmlEndTag              guifg=#00aa18   guibg=NONE      cterm=underline
+hi  htmlTag                 guifg=#00aa18   guibg=NONE      cterm=none
+
 " json
 hi! link jsonBraces         braces
 
@@ -309,11 +332,24 @@ hi! link makePreCondit          preCondit
 hi! link makeTarget             functionName
 
 " Markdown
-hi! link mkdCode                preProc
-hi! link mkdDelimiter           special
-hi! link mkdLink                reference
-hi! link mkdNonListItemBlock    normal
-hi! link mkdURL                 url
+hi! link markdownBold               htmlBold
+hi! link markdownBoldDelimiter      markdownH1Delimiter
+hi! link markdownEscape             escape
+hi! link markdonwH1                 title
+hi! link markdownH1Delimiter        special
+hi! link markdownH3                 markdownH1
+hi! link markdownH3Delimiter        markdownH1delimiter
+hi! link markdownId                 preProc
+hi! link markdownIdDeclaration      preProc
+hi! link markdwonItalic             htmlItalic
+hi! link markdownItalicDelimiter    markdownH1Delimiter
+hi! link markdownLinkDelimiter      markdownH1Delimiter
+hi! link markdownLinkText           reference
+hi! link markdownLinkTextDelimiter  markdownH1Delimiter
+hi! link markdownListMarker         identifier
+hi! link markdownUrlTitle           markdownH1
+hi! link markdownUrlTitleDelimiter  markdownH1Delimiter
+hi! link markdownUrl                url
 
 " objc
 " NOTE: When I think of "instance", I think of the color yellow.  But it says
