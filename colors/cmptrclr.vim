@@ -6,7 +6,7 @@ if exists("syntax_on")
     syn reset
 endif
 
-let colors_colors = "cmptrclr"
+let g:colors_name = "cmptrclr"
 
 " Based off of:
 " https://github.com/dylnmc/lyne-vim/blob/master/plugin/lyne.vim#L19
@@ -163,6 +163,10 @@ hi  underlined          guifg=#0055ee   guibg=NONE      cterm=underline
 hi  url                 guifg=#0055ee   guibg=NONE      cterm=underline
 hi  variable            guifg=#00ebeb   guibg=NONE      cterm=none
 hi  warning             guifg=#b35a00   guibg=NONE      cterm=none
+
+hi  link nasmGen08Register  nasmGen32Register
+hi  link nasmGen16Register  nasmGen32Register
+hi  link nasmGen64Register  nasmGen32Register
 
 hi! link function       functionName
 hi! link note           title
